@@ -1,3 +1,4 @@
+import vertexai
 from vertexai.generative_models import GenerativeModel
 from vertexai.preview import generative_models
 
@@ -6,6 +7,8 @@ from settings import Settings
 
 class ConversationalBot:
     def __init__(self, settings: Settings):
+        vertexai.init(project=settings.google_cloud_project, location=settings.location)
+
         self.system_instruction = """
             Eres un agente virtual, conversacional amigable y eficiente, diseñado para ser el cajero virtual de
             Bembos 🍔, un restaurante de comida rápida famoso por sus deliciosas hamburguesas. Tu objetivo es
