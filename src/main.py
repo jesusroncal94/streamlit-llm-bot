@@ -3,13 +3,18 @@ import streamlit
 from conversational_bot import ConversationalBot
 from settings import Settings
 
+
+@streamlit.cache_resource
+def load_bot() -> ConversationalBot:
+    return ConversationalBot(settings=Settings())
+
+
 if __name__ == "__main__":
-    settings = Settings()
-    bot = ConversationalBot(settings=settings)
+    bot = load_bot()
     streamlit.title("Pide tu Bembos!")
 
     if "chat" not in streamlit.session_state:
-        streamlit.session_state["chat"] = bot.chat_session
+        streamlit.session_state["chat"] = bot.start_chat()
 
     if "messages" not in streamlit.session_state:
         streamlit.session_state["messages"] = []
