@@ -1,5 +1,5 @@
 import vertexai
-from vertexai.generative_models import GenerativeModel
+from vertexai.generative_models import ChatSession, GenerativeModel
 from vertexai.preview import generative_models
 
 from settings import Settings
@@ -24,7 +24,6 @@ class ConversationalBot:
             model_name=settings.llm_model_name,
             system_instruction=[self.system_instruction],
         )
-        self.chat_session = None
         self.generation_config = {
             "max_output_tokens": settings.max_output_tokens,
             "temperature": settings.temperature,
@@ -36,4 +35,6 @@ class ConversationalBot:
             generative_models.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
             generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
         }
-        self.chat_session = self.model.start_chat()
+
+    def start_chat(self) -> ChatSession:
+        return self.model.start_chat()
