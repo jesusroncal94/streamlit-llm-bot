@@ -2,6 +2,8 @@
 
 A conversational ordering assistant built with Streamlit and Google Vertex AI. It plays the counter staff of a fast-food restaurant: it takes an order in natural language, asks what it needs to ask, and suggests the sides and drinks that go with what you picked.
 
+> **Demo, not maintained.** This repository is a sample kept for reference; expect no updates or support.
+
 The chat loop is short. What makes the behaviour is the system instruction and the generation settings around it — which is the part worth reading.
 
 ## What it does
